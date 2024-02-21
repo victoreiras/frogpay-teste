@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  src:
+    container_name: src
+    image: apptestefrogpay
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=db;Database=TesteFrogPay;Username=postgres;Password=mysecretpassword;"
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: TesteFrogPay
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}

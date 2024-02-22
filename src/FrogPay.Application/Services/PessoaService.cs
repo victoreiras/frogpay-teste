@@ -45,9 +45,16 @@ public class PessoaService : IPessoaService
                 pessoaDto.Loja.NomeFantasia,
                 pessoaDto.Loja.RazaoSocial,
                 pessoaDto.Loja.Cnpj);
+
+            var dadosBancarios = new DadosBancarios(
+                pessoaDto.DadosBancarios.CodigoBanco,
+                pessoaDto.DadosBancarios.Agencia,
+                pessoaDto.DadosBancarios.Conta,
+                pessoaDto.DadosBancarios.DigitoConta);
             
             pessoa.Endereco = endereco;
             pessoa.Loja = loja;
+            pessoa.DadosBancarios = dadosBancarios;
 
             _pessoaRepository.CadastrarPessoa(pessoa);
             

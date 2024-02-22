@@ -9,9 +9,11 @@ public class DadosBancarios
         DigitoConta = digitoConta;
     }
 
-    public int Id { get; private set; }
+    public Guid Id { get; private set; }
     public string CodigoBanco { get; private set; }
     public string Agencia { get; private set; }
     public string Conta { get; private set; }
     public string DigitoConta { get; private set; }
+    public Guid IdPessoa { get; private set; }
+    public Pessoa Pessoa { get; private set; }
 }

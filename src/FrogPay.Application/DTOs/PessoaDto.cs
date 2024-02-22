@@ -19,4 +19,6 @@ public record PessoaDto
 
     public LojaDto Loja { get; set; }
 
+    public DadosBancariosDto DadosBancarios { get; set; }
+
 }

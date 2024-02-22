@@ -19,5 +19,5 @@ public class Pessoa
     public DateTime DataCriacao { get; private set; }
     public Endereco Endereco { get; set; }
     public Loja Loja { get; set; }
-    // public DadosBancarios DadosBancarios { get; private set; }
+    public DadosBancarios DadosBancarios { get; set; }
 }

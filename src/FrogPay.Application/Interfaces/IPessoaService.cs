@@ -3,6 +3,6 @@ using src.FrogPay.Application.DTOs;
 namespace src.FrogPay.Application.Interfaces;
 public interface IPessoaService
 {
-    ServiceResponse<PessoaDto> CadastrarPessoa(PessoaDto pessoaDto);
-    ServiceResponse<PessoaDto> EditarPessoa (PessoaDto pessoaDto);
+    ServiceResponse<PessoaCriacaoDto> CadastrarPessoa(PessoaCriacaoDto pessoaDto);
+    ServiceResponse<PessoaEdicaoDto> EditarPessoa (PessoaEdicaoDto pessoaDto);
 }

@@ -17,14 +17,14 @@ public class PessoaController : ControllerBase
     }
 
     [HttpPost("cadastrarPessoa")]
-    public IActionResult CadastrarPessoa(PessoaDto pessoaDto)
+    public IActionResult CadastrarPessoa(PessoaCriacaoDto pessoaDto)
     {
         var pessoaCadastrada = _pessoaService.CadastrarPessoa(pessoaDto);
         return Ok(pessoaCadastrada);
     }
 
     [HttpPut("editarPessoa")]
-    public IActionResult EditarPessoa(PessoaDto pessoaDto)
+    public IActionResult EditarPessoa(PessoaEdicaoDto pessoaDto)
     {
         var pessoaEditada = _pessoaService.EditarPessoa(pessoaDto);
         return Ok(pessoaEditada);

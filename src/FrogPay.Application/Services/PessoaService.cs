@@ -15,13 +15,13 @@ public class PessoaService : IPessoaService
         _pessoaRepository = pessoaRepository;
     }
 
-    public ServiceResponse<PessoaDto> CadastrarPessoa(PessoaDto pessoaDto)
+    public ServiceResponse<PessoaCriacaoDto> CadastrarPessoa(PessoaCriacaoDto pessoaCriacaoDto)
     {
-        var serviceResponse = new ServiceResponse<PessoaDto>();
+        var serviceResponse = new ServiceResponse<PessoaCriacaoDto>();
 
         try
         {
-            if (pessoaDto is null)
+            if (pessoaCriacaoDto is null)
             {
                 serviceResponse.Mensagem = "Parâmetros inválidos";
                 serviceResponse.Sucesso = false;
@@ -29,28 +29,28 @@ public class PessoaService : IPessoaService
             }
 
             var pessoa = new Pessoa(
-                pessoaDto.Nome, 
-                pessoaDto.Cpf, 
-                pessoaDto.DataNascimento);
+                pessoaCriacaoDto.PessoaDto.Nome, 
+                pessoaCriacaoDto.PessoaDto.Cpf, 
+                pessoaCriacaoDto.PessoaDto.DataNascimento);
 
             var endereco = new Endereco(
-                pessoaDto.Endereco.UfEstado, 
-                pessoaDto.Endereco.Cidade, 
-                pessoaDto.Endereco.Bairro,
-                pessoaDto.Endereco.Logradouro,
-                pessoaDto.Endereco.Numero,
-                pessoaDto.Endereco.Complemento);
+                pessoaCriacaoDto.PessoaDto.Endereco.UfEstado, 
+                pessoaCriacaoDto.PessoaDto.Endereco.Cidade, 
+                pessoaCriacaoDto.PessoaDto.Endereco.Bairro,
+                pessoaCriacaoDto.PessoaDto.Endereco.Logradouro,
+                pessoaCriacaoDto.PessoaDto.Endereco.Numero,
+                pessoaCriacaoDto.PessoaDto.Endereco.Complemento);
 
             var loja = new Loja(
-                pessoaDto.Loja.NomeFantasia,
-                pessoaDto.Loja.RazaoSocial,
-                pessoaDto.Loja.Cnpj);
+                pessoaCriacaoDto.PessoaDto.Loja.NomeFantasia,
+                pessoaCriacaoDto.PessoaDto.Loja.RazaoSocial,
+                pessoaCriacaoDto.PessoaDto.Loja.Cnpj);
 
             var dadosBancarios = new DadosBancarios(
-                pessoaDto.DadosBancarios.CodigoBanco,
-                pessoaDto.DadosBancarios.Agencia,
-                pessoaDto.DadosBancarios.Conta,
-                pessoaDto.DadosBancarios.DigitoConta);
+                pessoaCriacaoDto.PessoaDto.DadosBancarios.CodigoBanco,
+                pessoaCriacaoDto.PessoaDto.DadosBancarios.Agencia,
+                pessoaCriacaoDto.PessoaDto.DadosBancarios.Conta,
+                pessoaCriacaoDto.PessoaDto.DadosBancarios.DigitoConta);
             
             pessoa.Endereco = endereco;
             pessoa.Loja = loja;
@@ -58,7 +58,7 @@ public class PessoaService : IPessoaService
 
             _pessoaRepository.CadastrarPessoa(pessoa);
             
-            serviceResponse.Dados = pessoaDto;
+            serviceResponse.Dados = pessoaCriacaoDto;
             serviceResponse.Mensagem = "Pessoa criada com sucesso!";
         }
         catch (Exception ex)
@@ -71,23 +71,44 @@ public class PessoaService : IPessoaService
         return serviceResponse;
     }
 
-    public ServiceResponse<PessoaDto> EditarPessoa(PessoaDto pessoaDto)
+    public ServiceResponse<PessoaEdicaoDto> EditarPessoa(PessoaEdicaoDto pessoaEdicaoDto)
     {
-         var serviceResponse = new ServiceResponse<PessoaDto>();
+         var serviceResponse = new ServiceResponse<PessoaEdicaoDto>();
 
         try
         {
-            if (pessoaDto is null)
+            var pessoa = _pessoaRepository.ObterPessoaPorId(pessoaEdicaoDto.Id);
+
+            if (pessoa is null)
             {
-                serviceResponse.Mensagem = "Lista não pode ser nula.";
+                serviceResponse.Mensagem = "Pessoa não pode ser nula.";
                 serviceResponse.Sucesso = false;
                 return serviceResponse;
             }
 
-            var pessoa = _mapper.Map<Pessoa>(pessoaDto);
+            pessoa.Nome = pessoaEdicaoDto.PessoaDto.Nome; 
+            pessoa.Cpf = pessoaEdicaoDto.PessoaDto.Cpf; 
+            pessoa.DataNascimento = pessoaEdicaoDto.PessoaDto.DataNascimento;
+
+            pessoa.Endereco.UfEstado = pessoaEdicaoDto.PessoaDto.Endereco.UfEstado;
+            pessoa.Endereco.Cidade = pessoaEdicaoDto.PessoaDto.Endereco.Cidade;
+            pessoa.Endereco.Bairro = pessoaEdicaoDto.PessoaDto.Endereco.Bairro;
+            pessoa.Endereco.Logradouro = pessoaEdicaoDto.PessoaDto.Endereco.Logradouro;
+            pessoa.Endereco.Numero = pessoaEdicaoDto.PessoaDto.Endereco.Numero;
+            pessoa.Endereco.Complemento = pessoaEdicaoDto.PessoaDto.Endereco.Complemento;
+
+            pessoa.Loja.NomeFantasia = pessoaEdicaoDto.PessoaDto.Loja.NomeFantasia;
+            pessoa.Loja.RazaoSocial = pessoaEdicaoDto.PessoaDto.Loja.RazaoSocial;
+            pessoa.Loja.Cnpj = pessoaEdicaoDto.PessoaDto.Loja.Cnpj;
+
+            pessoa.DadosBancarios.CodigoBanco = pessoaEdicaoDto.PessoaDto.DadosBancarios.CodigoBanco;
+            pessoa.DadosBancarios.Agencia = pessoaEdicaoDto.PessoaDto.DadosBancarios.Agencia;
+            pessoa.DadosBancarios.Conta = pessoaEdicaoDto.PessoaDto.DadosBancarios.Conta;
+            pessoa.DadosBancarios.DigitoConta = pessoaEdicaoDto.PessoaDto.DadosBancarios.DigitoConta;
+
             _pessoaRepository.EditarPessoa(pessoa);
 
-            serviceResponse.Dados = pessoaDto;
+            serviceResponse.Dados = pessoaEdicaoDto;
             serviceResponse.Mensagem = "Pessoa atualizada com sucesso!";
         }
         catch (Exception ex)

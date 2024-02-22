@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using src.FrogPay.Infrastructure.Data;
@@ -11,9 +12,11 @@ using src.FrogPay.Infrastructure.Data;
 namespace src.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240222201816_ConfiguracaoDeEdicaoPessoa")]
+    partial class ConfiguracaoDeEdicaoPessoa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +64,7 @@ namespace src.Migrations
                     b.HasIndex("IdPessoa")
                         .IsUnique();
 
-                    b.ToTable("DadosBancarios", (string)null);
+                    b.ToTable("DadosBancarios");
                 });
 
             modelBuilder.Entity("src.FrogPay.Domain.Entities.Endereco", b =>
@@ -118,7 +121,7 @@ namespace src.Migrations
                     b.HasIndex("IdPessoa")
                         .IsUnique();
 
-                    b.ToTable("Enderecos", (string)null);
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("src.FrogPay.Domain.Entities.Loja", b =>
@@ -161,7 +164,7 @@ namespace src.Migrations
                     b.HasIndex("IdPessoa")
                         .IsUnique();
 
-                    b.ToTable("Lojas", (string)null);
+                    b.ToTable("Lojas");
                 });
 
             modelBuilder.Entity("src.FrogPay.Domain.Entities.Pessoa", b =>
@@ -200,7 +203,7 @@ namespace src.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Pessoas", (string)null);
+                    b.ToTable("Pessoas");
                 });
 
             modelBuilder.Entity("src.FrogPay.Domain.Entities.DadosBancarios", b =>

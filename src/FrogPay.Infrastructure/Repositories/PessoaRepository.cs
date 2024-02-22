@@ -25,4 +25,9 @@ public class PessoaRepository : IPessoaRepository
         _db.Pessoas.Update(pessoa);
         _db.SaveChanges();
     }
+
+    public Pessoa ObterPessoaPorId(Guid id)
+    {
+        return _db.Pessoas.FirstOrDefault(p => p.Id == id);
+    }
 }

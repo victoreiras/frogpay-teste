@@ -6,4 +6,6 @@ public interface IPessoaRepository
 {
     void CadastrarPessoa(Pessoa pessoa);
     void EditarPessoa(Pessoa pessoa);
+
+    Pessoa ObterPessoaPorId(Guid id);
 }

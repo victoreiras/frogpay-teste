@@ -10,10 +10,11 @@ public class Loja
         DataAbertura = DateTime.Now;
     }
 
-    public int Id { get; private set; }
+    public Guid Id { get; private set; }
     public string NomeFantasia { get; private set; }
     public string RazaoSocial { get; private set; }
     public string Cnpj { get; private set; }
     public DateTime DataAbertura { get; private set; }
     public Pessoa Pessoa { get; private set; }
+    public Guid IdPessoa { get; private set; }
 }

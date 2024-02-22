@@ -40,8 +40,14 @@ public class PessoaService : IPessoaService
                 pessoaDto.Endereco.Logradouro,
                 pessoaDto.Endereco.Numero,
                 pessoaDto.Endereco.Complemento);
+
+            var loja = new Loja(
+                pessoaDto.Loja.NomeFantasia,
+                pessoaDto.Loja.RazaoSocial,
+                pessoaDto.Loja.Cnpj);
             
             pessoa.Endereco = endereco;
+            pessoa.Loja = loja;
 
             _pessoaRepository.CadastrarPessoa(pessoa);
             

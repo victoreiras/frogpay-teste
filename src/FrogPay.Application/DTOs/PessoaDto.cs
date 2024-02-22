@@ -17,4 +17,6 @@ public record PessoaDto
 
     public EnderecoDto Endereco { get; set; }
 
+    public LojaDto Loja { get; set; }
+
 }

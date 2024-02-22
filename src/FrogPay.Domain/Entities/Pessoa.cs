@@ -17,7 +17,7 @@ public class Pessoa
     public DateTime DataNascimento { get; private set; }
     public bool Ativo { get; private set; }
     public DateTime DataCriacao { get; private set; }
-    // public Endereco Endereco { get; private set; }
+    public Endereco Endereco { get; set; }
     // public Loja Loja { get; private set; }
     // public DadosBancarios DadosBancarios { get; private set; }
 }

@@ -15,4 +15,6 @@ public record PessoaDto
     [Required(ErrorMessage = "O campo é obrigatório!")]
     public DateTime DataNascimento { get; set; }
 
+    public EnderecoDto Endereco { get; set; }
+
 }

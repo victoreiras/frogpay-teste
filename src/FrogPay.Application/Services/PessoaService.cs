@@ -21,15 +21,28 @@ public class PessoaService : IPessoaService
 
         try
         {
-            if ((pessoaDto is null))
+            if (pessoaDto is null)
             {
                 serviceResponse.Mensagem = "Parâmetros inválidos";
                 serviceResponse.Sucesso = false;
                 return serviceResponse;
             }
 
-            var pessoa = new Pessoa(pessoaDto.Nome, pessoaDto.Cpf, pessoaDto.DataNascimento);
-            //var pessoa = _mapper.Map<Pessoa>(PessoaDto);
+            var pessoa = new Pessoa(
+                pessoaDto.Nome, 
+                pessoaDto.Cpf, 
+                pessoaDto.DataNascimento);
+
+            var endereco = new Endereco(
+                pessoaDto.Endereco.UfEstado, 
+                pessoaDto.Endereco.Cidade, 
+                pessoaDto.Endereco.Bairro,
+                pessoaDto.Endereco.Logradouro,
+                pessoaDto.Endereco.Numero,
+                pessoaDto.Endereco.Complemento);
+            
+            pessoa.Endereco = endereco;
+
             _pessoaRepository.CadastrarPessoa(pessoa);
             
             serviceResponse.Dados = pessoaDto;

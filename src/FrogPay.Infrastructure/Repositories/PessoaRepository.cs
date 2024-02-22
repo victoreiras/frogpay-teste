@@ -19,4 +19,10 @@ public class PessoaRepository : IPessoaRepository
         _db.Pessoas.Add(pessoa);
         _db.SaveChanges();
     }
+
+    public void EditarPessoa(Pessoa pessoa)
+    {
+        _db.Pessoas.Update(pessoa);
+        _db.SaveChanges();
+    }
 }

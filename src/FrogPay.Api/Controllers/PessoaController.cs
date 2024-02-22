@@ -23,6 +23,13 @@ public class PessoaController : ControllerBase
         return Ok(pessoaCadastrada);
     }
 
+    [HttpPut("editarPessoa")]
+    public IActionResult EditarPessoa(PessoaDto pessoaDto)
+    {
+        var pessoaEditada = _pessoaService.EditarPessoa(pessoaDto);
+        return Ok(pessoaEditada);
+    }
+
     [HttpGet("obterDadosBancarios")]
     public IActionResult ObterDadosBancarios(int idPessoa)
     {

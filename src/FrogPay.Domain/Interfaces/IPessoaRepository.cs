@@ -5,4 +5,5 @@ namespace src.FrogPay.Domain.Interfaces;
 public interface IPessoaRepository
 {
     void CadastrarPessoa(Pessoa pessoa);
+    void EditarPessoa(Pessoa pessoa);
 }

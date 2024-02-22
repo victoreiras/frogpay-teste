@@ -44,4 +44,32 @@ public class PessoaService : IPessoaService
 
         return serviceResponse;
     }
+
+    public ServiceResponse<PessoaDto> EditarPessoa(PessoaDto pessoaDto)
+    {
+         var serviceResponse = new ServiceResponse<PessoaDto>();
+
+        try
+        {
+            if (pessoaDto is null)
+            {
+                serviceResponse.Mensagem = "Lista não pode ser nula.";
+                serviceResponse.Sucesso = false;
+                return serviceResponse;
+            }
+
+            var pessoa = _mapper.Map<Pessoa>(pessoaDto);
+            _pessoaRepository.EditarPessoa(pessoa);
+
+            serviceResponse.Dados = pessoaDto;
+            serviceResponse.Mensagem = "Pessoa atualizada com sucesso!";
+        }
+        catch (Exception ex)
+        {
+            serviceResponse.Mensagem = ex.Message;
+            serviceResponse.Sucesso = false;
+        }
+
+        return serviceResponse;
+    }
 }

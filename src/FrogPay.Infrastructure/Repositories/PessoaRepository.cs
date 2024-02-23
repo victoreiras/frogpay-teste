@@ -2,6 +2,7 @@ using src.FrogPay.Domain.Entities;
 using src.FrogPay.Domain.Interfaces;
 using src.FrogPay.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using src.FrogPay.Application.DTOs;
 
 namespace src.FrogPay.Infrastructure.Repositories;
 
@@ -29,5 +30,28 @@ public class PessoaRepository : IPessoaRepository
     public Pessoa ObterPessoaPorId(Guid id)
     {
         return _db.Pessoas.FirstOrDefault(p => p.Id == id);
+    }
+
+    public DadosBancariosEnderecoDto ObterDadosBancarios(Guid id)
+    {
+        var retorno = _db.Pessoas
+            .Where(x => x.Id == id)
+            .Select(q => 
+            new DadosBancariosEnderecoDto 
+            {
+                CodigoBanco = q.DadosBancarios.CodigoBanco,
+                Agencia = q.DadosBancarios.Agencia,
+                Conta = q.DadosBancarios.Conta,
+                DigitoConta = q.DadosBancarios.DigitoConta,
+                UfEstado = q.Endereco.UfEstado,
+                Cidade = q.Endereco.Cidade,
+                Bairro = q.Endereco.Bairro,
+                Logradouro = q.Endereco.Logradouro,
+                Numero = q.Endereco.Numero,
+                Complemento = q.Endereco.Complemento
+            })
+            .FirstOrDefault(); 
+
+        return retorno;       
     }
 }

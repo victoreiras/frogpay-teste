@@ -119,4 +119,23 @@ public class PessoaService : IPessoaService
 
         return serviceResponse;
     }
+
+    public ServiceResponse<DadosBancariosEnderecoDto> ObterDadosBancarios(Guid idPessoa)
+    {
+        var serviceResponse = new ServiceResponse<DadosBancariosEnderecoDto>();
+
+        try
+        {
+            var resultado = _pessoaRepository.ObterDadosBancarios(idPessoa);
+
+            serviceResponse.Dados = resultado;
+        }
+        catch (Exception ex)
+        {
+            serviceResponse.Mensagem = ex.Message;
+            serviceResponse.Sucesso = false;
+        }
+
+        return serviceResponse;
+    }
 }

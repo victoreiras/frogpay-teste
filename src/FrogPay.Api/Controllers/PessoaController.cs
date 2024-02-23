@@ -31,9 +31,10 @@ public class PessoaController : ControllerBase
     }
 
     [HttpGet("obterDadosBancarios")]
-    public IActionResult ObterDadosBancarios(int idPessoa)
+    public IActionResult ObterDadosBancarios(Guid idPessoa)
     {
-        return Ok();
+        var dadosBancarios = _pessoaService.ObterDadosBancarios(idPessoa);
+        return Ok(dadosBancarios);
     }
 
     [HttpGet("obterEndereco")]

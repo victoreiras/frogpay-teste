@@ -2,9 +2,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /app
 
-COPY *.csproj ./
+COPY *.sln .
+COPY ./src/src.csproj ./src/
+COPY ./test/test.csproj ./test/
 
-RUN dotnet restore
+RUN dotnet restore 
 
 COPY  . ./
 

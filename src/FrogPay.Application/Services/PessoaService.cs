@@ -28,34 +28,7 @@ public class PessoaService : IPessoaService
                 return serviceResponse;
             }
 
-            var pessoa = new Pessoa(
-                pessoaCriacaoDto.Nome, 
-                pessoaCriacaoDto.Cpf, 
-                pessoaCriacaoDto.DataNascimento);
-
-            var endereco = new Endereco(
-                pessoaCriacaoDto.Endereco.UfEstado, 
-                pessoaCriacaoDto.Endereco.Cidade, 
-                pessoaCriacaoDto.Endereco.Bairro,
-                pessoaCriacaoDto.Endereco.Logradouro,
-                pessoaCriacaoDto.Endereco.Numero,
-                pessoaCriacaoDto.Endereco.Complemento);
-
-            var loja = new Loja(
-                pessoaCriacaoDto.Loja.NomeFantasia,
-                pessoaCriacaoDto.Loja.RazaoSocial,
-                pessoaCriacaoDto.Loja.Cnpj);
-
-            var dadosBancarios = new DadosBancarios(
-                pessoaCriacaoDto.DadosBancarios.CodigoBanco,
-                pessoaCriacaoDto.DadosBancarios.Agencia,
-                pessoaCriacaoDto.DadosBancarios.Conta,
-                pessoaCriacaoDto.DadosBancarios.DigitoConta);
-            
-            pessoa.Endereco = endereco;
-            pessoa.Loja = loja;
-            pessoa.DadosBancarios = dadosBancarios;
-
+            var pessoa = _mapper.Map<Pessoa>(pessoaCriacaoDto);
             _pessoaRepository.CadastrarPessoa(pessoa);
             
             serviceResponse.Dados = pessoaCriacaoDto;
@@ -77,35 +50,14 @@ public class PessoaService : IPessoaService
 
         try
         {
-            var pessoa = _pessoaRepository.ObterPessoaPorId(pessoaEdicaoDto.Id);
-
-            if (pessoa is null)
+            if (pessoaEdicaoDto is null)
             {
                 serviceResponse.Mensagem = "Pessoa não pode ser nula.";
                 serviceResponse.Sucesso = false;
                 return serviceResponse;
             }
 
-            pessoa.Nome = pessoaEdicaoDto.Nome; 
-            pessoa.Cpf = pessoaEdicaoDto.Cpf; 
-            pessoa.DataNascimento = pessoaEdicaoDto.DataNascimento;
-
-            pessoa.Endereco.UfEstado = pessoaEdicaoDto.Endereco.UfEstado;
-            pessoa.Endereco.Cidade = pessoaEdicaoDto.Endereco.Cidade;
-            pessoa.Endereco.Bairro = pessoaEdicaoDto.Endereco.Bairro;
-            pessoa.Endereco.Logradouro = pessoaEdicaoDto.Endereco.Logradouro;
-            pessoa.Endereco.Numero = pessoaEdicaoDto.Endereco.Numero;
-            pessoa.Endereco.Complemento = pessoaEdicaoDto.Endereco.Complemento;
-
-            pessoa.Loja.NomeFantasia = pessoaEdicaoDto.Loja.NomeFantasia;
-            pessoa.Loja.RazaoSocial = pessoaEdicaoDto.Loja.RazaoSocial;
-            pessoa.Loja.Cnpj = pessoaEdicaoDto.Loja.Cnpj;
-
-            pessoa.DadosBancarios.CodigoBanco = pessoaEdicaoDto.DadosBancarios.CodigoBanco;
-            pessoa.DadosBancarios.Agencia = pessoaEdicaoDto.DadosBancarios.Agencia;
-            pessoa.DadosBancarios.Conta = pessoaEdicaoDto.DadosBancarios.Conta;
-            pessoa.DadosBancarios.DigitoConta = pessoaEdicaoDto.DadosBancarios.DigitoConta;
-
+            var pessoa = _mapper.Map<Pessoa>(pessoaEdicaoDto);
             _pessoaRepository.EditarPessoa(pessoa);
 
             serviceResponse.Dados = pessoaEdicaoDto;

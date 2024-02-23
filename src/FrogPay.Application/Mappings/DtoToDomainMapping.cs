@@ -9,5 +9,12 @@ public class DtoToDomainMapping : Profile
     public DtoToDomainMapping()
     {
         CreateMap<PessoaDto, Pessoa>();
+        CreateMap<PessoaCriacaoDto, Pessoa>();
+        CreateMap<PessoaEdicaoDto, Pessoa>();
+        CreateMap<EnderecoDto, Endereco>();
+        CreateMap<LojaDto, Loja>();
+        CreateMap<DadosBancariosDto, DadosBancarios>();
+
+
     }
 }

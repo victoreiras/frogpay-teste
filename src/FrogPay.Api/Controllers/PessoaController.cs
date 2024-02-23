@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using src.FrogPay.Application.DTOs;
 using src.FrogPay.Application.Interfaces;
@@ -6,6 +7,7 @@ namespace src.FrogPay.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PessoaController : ControllerBase
 {
 

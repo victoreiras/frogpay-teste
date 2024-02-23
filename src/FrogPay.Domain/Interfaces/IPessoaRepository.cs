@@ -9,4 +9,5 @@ public interface IPessoaRepository
     void EditarPessoa(Pessoa pessoa);
     Pessoa ObterPessoaPorId(Guid id);
     DadosBancariosEnderecoDto ObterDadosBancarios(Guid id);
+    EnderecoDto ObterEndereco(string nomePessoa);
 }

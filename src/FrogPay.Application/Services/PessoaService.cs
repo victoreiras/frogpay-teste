@@ -138,4 +138,23 @@ public class PessoaService : IPessoaService
 
         return serviceResponse;
     }
+
+    public ServiceResponse<EnderecoDto> ObterEndereco(string nomePessoa)
+    {
+        var serviceResponse = new ServiceResponse<EnderecoDto>();
+
+        try
+        {
+            var resultado = _pessoaRepository.ObterEndereco(nomePessoa);
+
+            serviceResponse.Dados = resultado;
+        }
+        catch (Exception ex)
+        {
+            serviceResponse.Mensagem = ex.Message;
+            serviceResponse.Sucesso = false;
+        }
+
+        return serviceResponse;
+    }
 }

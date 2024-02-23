@@ -6,4 +6,5 @@ public interface IPessoaService
     ServiceResponse<PessoaCriacaoDto> CadastrarPessoa(PessoaCriacaoDto pessoaDto);
     ServiceResponse<PessoaEdicaoDto> EditarPessoa (PessoaEdicaoDto pessoaDto);
     ServiceResponse<DadosBancariosEnderecoDto> ObterDadosBancarios(Guid idPessoa);
+    ServiceResponse<EnderecoDto> ObterEndereco(string nomePessoa);
 }

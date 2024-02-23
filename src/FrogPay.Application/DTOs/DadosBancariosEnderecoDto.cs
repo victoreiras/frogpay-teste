@@ -1,6 +1,6 @@
 namespace src.FrogPay.Application.DTOs;
 
-public class DadosBancariosEnderecoDto
+public record DadosBancariosEnderecoDto
 {
     public string CodigoBanco { get; set; }
     public string Agencia { get; set; }

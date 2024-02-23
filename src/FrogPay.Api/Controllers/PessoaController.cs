@@ -38,8 +38,9 @@ public class PessoaController : ControllerBase
     }
 
     [HttpGet("obterEndereco")]
-    public IActionResult ObterEndereco(string nome)
+    public IActionResult ObterEndereco(string nomePessoa)
     {
-        return Ok();
+        var endereco = _pessoaService.ObterEndereco(nomePessoa);
+        return Ok(endereco);
     }
 }

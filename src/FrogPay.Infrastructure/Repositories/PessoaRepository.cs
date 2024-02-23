@@ -29,12 +29,16 @@ public class PessoaRepository : IPessoaRepository
 
     public Pessoa ObterPessoaPorId(Guid id)
     {
-        return _db.Pessoas.FirstOrDefault(p => p.Id == id);
+        return _db.Pessoas
+            .Include(q => q.Endereco)
+            .Include(q => q.DadosBancarios)
+            .Include(q => q.Loja)
+            .FirstOrDefault(p => p.Id == id);
     }
 
     public DadosBancariosEnderecoDto ObterDadosBancarios(Guid id)
     {
-        var retorno = _db.Pessoas
+        var resultado = _db.Pessoas
             .Where(x => x.Id == id)
             .Select(q => 
             new DadosBancariosEnderecoDto 
@@ -52,6 +56,25 @@ public class PessoaRepository : IPessoaRepository
             })
             .FirstOrDefault(); 
 
-        return retorno;       
+        return resultado;       
+    }
+
+    public EnderecoDto ObterEndereco(string nomePessoa)
+    {
+        var resultado = _db.Pessoas
+            .Where(q => q.Nome.Contains(nomePessoa))
+            .Select(x =>
+            new EnderecoDto
+            {
+                UfEstado = x.Endereco.UfEstado,
+                Cidade = x.Endereco.Cidade,
+                Bairro = x.Endereco.Bairro,
+                Logradouro = x.Endereco.Logradouro,
+                Numero = x.Endereco.Numero,
+                Complemento = x.Endereco.Complemento
+            })
+            .FirstOrDefault();
+
+        return resultado;
     }
 }

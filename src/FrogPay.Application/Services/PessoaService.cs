@@ -29,28 +29,28 @@ public class PessoaService : IPessoaService
             }
 
             var pessoa = new Pessoa(
-                pessoaCriacaoDto.PessoaDto.Nome, 
-                pessoaCriacaoDto.PessoaDto.Cpf, 
-                pessoaCriacaoDto.PessoaDto.DataNascimento);
+                pessoaCriacaoDto.Nome, 
+                pessoaCriacaoDto.Cpf, 
+                pessoaCriacaoDto.DataNascimento);
 
             var endereco = new Endereco(
-                pessoaCriacaoDto.PessoaDto.Endereco.UfEstado, 
-                pessoaCriacaoDto.PessoaDto.Endereco.Cidade, 
-                pessoaCriacaoDto.PessoaDto.Endereco.Bairro,
-                pessoaCriacaoDto.PessoaDto.Endereco.Logradouro,
-                pessoaCriacaoDto.PessoaDto.Endereco.Numero,
-                pessoaCriacaoDto.PessoaDto.Endereco.Complemento);
+                pessoaCriacaoDto.Endereco.UfEstado, 
+                pessoaCriacaoDto.Endereco.Cidade, 
+                pessoaCriacaoDto.Endereco.Bairro,
+                pessoaCriacaoDto.Endereco.Logradouro,
+                pessoaCriacaoDto.Endereco.Numero,
+                pessoaCriacaoDto.Endereco.Complemento);
 
             var loja = new Loja(
-                pessoaCriacaoDto.PessoaDto.Loja.NomeFantasia,
-                pessoaCriacaoDto.PessoaDto.Loja.RazaoSocial,
-                pessoaCriacaoDto.PessoaDto.Loja.Cnpj);
+                pessoaCriacaoDto.Loja.NomeFantasia,
+                pessoaCriacaoDto.Loja.RazaoSocial,
+                pessoaCriacaoDto.Loja.Cnpj);
 
             var dadosBancarios = new DadosBancarios(
-                pessoaCriacaoDto.PessoaDto.DadosBancarios.CodigoBanco,
-                pessoaCriacaoDto.PessoaDto.DadosBancarios.Agencia,
-                pessoaCriacaoDto.PessoaDto.DadosBancarios.Conta,
-                pessoaCriacaoDto.PessoaDto.DadosBancarios.DigitoConta);
+                pessoaCriacaoDto.DadosBancarios.CodigoBanco,
+                pessoaCriacaoDto.DadosBancarios.Agencia,
+                pessoaCriacaoDto.DadosBancarios.Conta,
+                pessoaCriacaoDto.DadosBancarios.DigitoConta);
             
             pessoa.Endereco = endereco;
             pessoa.Loja = loja;
@@ -86,25 +86,25 @@ public class PessoaService : IPessoaService
                 return serviceResponse;
             }
 
-            pessoa.Nome = pessoaEdicaoDto.PessoaDto.Nome; 
-            pessoa.Cpf = pessoaEdicaoDto.PessoaDto.Cpf; 
-            pessoa.DataNascimento = pessoaEdicaoDto.PessoaDto.DataNascimento;
+            pessoa.Nome = pessoaEdicaoDto.Nome; 
+            pessoa.Cpf = pessoaEdicaoDto.Cpf; 
+            pessoa.DataNascimento = pessoaEdicaoDto.DataNascimento;
 
-            pessoa.Endereco.UfEstado = pessoaEdicaoDto.PessoaDto.Endereco.UfEstado;
-            pessoa.Endereco.Cidade = pessoaEdicaoDto.PessoaDto.Endereco.Cidade;
-            pessoa.Endereco.Bairro = pessoaEdicaoDto.PessoaDto.Endereco.Bairro;
-            pessoa.Endereco.Logradouro = pessoaEdicaoDto.PessoaDto.Endereco.Logradouro;
-            pessoa.Endereco.Numero = pessoaEdicaoDto.PessoaDto.Endereco.Numero;
-            pessoa.Endereco.Complemento = pessoaEdicaoDto.PessoaDto.Endereco.Complemento;
+            pessoa.Endereco.UfEstado = pessoaEdicaoDto.Endereco.UfEstado;
+            pessoa.Endereco.Cidade = pessoaEdicaoDto.Endereco.Cidade;
+            pessoa.Endereco.Bairro = pessoaEdicaoDto.Endereco.Bairro;
+            pessoa.Endereco.Logradouro = pessoaEdicaoDto.Endereco.Logradouro;
+            pessoa.Endereco.Numero = pessoaEdicaoDto.Endereco.Numero;
+            pessoa.Endereco.Complemento = pessoaEdicaoDto.Endereco.Complemento;
 
-            pessoa.Loja.NomeFantasia = pessoaEdicaoDto.PessoaDto.Loja.NomeFantasia;
-            pessoa.Loja.RazaoSocial = pessoaEdicaoDto.PessoaDto.Loja.RazaoSocial;
-            pessoa.Loja.Cnpj = pessoaEdicaoDto.PessoaDto.Loja.Cnpj;
+            pessoa.Loja.NomeFantasia = pessoaEdicaoDto.Loja.NomeFantasia;
+            pessoa.Loja.RazaoSocial = pessoaEdicaoDto.Loja.RazaoSocial;
+            pessoa.Loja.Cnpj = pessoaEdicaoDto.Loja.Cnpj;
 
-            pessoa.DadosBancarios.CodigoBanco = pessoaEdicaoDto.PessoaDto.DadosBancarios.CodigoBanco;
-            pessoa.DadosBancarios.Agencia = pessoaEdicaoDto.PessoaDto.DadosBancarios.Agencia;
-            pessoa.DadosBancarios.Conta = pessoaEdicaoDto.PessoaDto.DadosBancarios.Conta;
-            pessoa.DadosBancarios.DigitoConta = pessoaEdicaoDto.PessoaDto.DadosBancarios.DigitoConta;
+            pessoa.DadosBancarios.CodigoBanco = pessoaEdicaoDto.DadosBancarios.CodigoBanco;
+            pessoa.DadosBancarios.Agencia = pessoaEdicaoDto.DadosBancarios.Agencia;
+            pessoa.DadosBancarios.Conta = pessoaEdicaoDto.DadosBancarios.Conta;
+            pessoa.DadosBancarios.DigitoConta = pessoaEdicaoDto.DadosBancarios.DigitoConta;
 
             _pessoaRepository.EditarPessoa(pessoa);
 

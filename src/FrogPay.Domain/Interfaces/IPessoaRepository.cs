@@ -10,4 +10,5 @@ public interface IPessoaRepository
     Pessoa ObterPessoaPorId(Guid id);
     DadosBancariosEnderecoDto ObterDadosBancarios(Guid id);
     EnderecoDto ObterEndereco(string nomePessoa);
+    List<Pessoa> ObterTodasPessoas(int pagina, int quantidade);
 }

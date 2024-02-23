@@ -7,4 +7,5 @@ public interface IPessoaService
     ServiceResponse<PessoaEdicaoDto> EditarPessoa (PessoaEdicaoDto pessoaDto);
     ServiceResponse<DadosBancariosEnderecoDto> ObterDadosBancarios(Guid idPessoa);
     ServiceResponse<EnderecoDto> ObterEndereco(string nomePessoa);
+    ServiceResponse<List<PessoaDto>> ObterTodasPessoas(int pagina, int quantidade);
 }

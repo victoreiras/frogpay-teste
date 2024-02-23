@@ -109,4 +109,23 @@ public class PessoaService : IPessoaService
 
         return serviceResponse;
     }
+
+    public ServiceResponse<List<PessoaDto>> ObterTodasPessoas(int pagina, int quantidade)
+    {
+        var serviceResponse = new ServiceResponse<List<PessoaDto>>();
+
+        try
+        {
+            var resultado = _pessoaRepository.ObterTodasPessoas(pagina, quantidade);
+
+            serviceResponse.Dados = _mapper.Map<List<PessoaDto>>(resultado);
+        }
+        catch (Exception ex)
+        {
+            serviceResponse.Mensagem = ex.Message;
+            serviceResponse.Sucesso = false;
+        }
+
+        return serviceResponse;
+    }
 }

@@ -32,6 +32,13 @@ public class PessoaController : ControllerBase
         return Ok(pessoaEditada);
     }
 
+    [HttpGet("obterTodasPessoas")]
+    public IActionResult ObterTodasPessoas(int pagina, int quantidade)
+    {
+        var pessoas = _pessoaService.ObterTodasPessoas(pagina, quantidade);
+        return Ok(pessoas);
+    }
+
     [HttpGet("obterDadosBancarios")]
     public IActionResult ObterDadosBancarios(Guid idPessoa)
     {

@@ -77,4 +77,15 @@ public class PessoaRepository : IPessoaRepository
 
         return resultado;
     }
+
+    public List<Pessoa> ObterTodasPessoas(int pagina, int quantidade)
+    {
+        return _db.Pessoas
+            .Include(q => q.Endereco)
+            .Include(q => q.DadosBancarios)
+            .Include(q => q.Loja)
+            .Skip((pagina - 1) * quantidade)
+            .Take(quantidade)
+            .ToList();
+    }
 }

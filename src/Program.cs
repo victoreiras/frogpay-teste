@@ -68,6 +68,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+DatabaseManagementService.MigrationInitialisation(app);
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

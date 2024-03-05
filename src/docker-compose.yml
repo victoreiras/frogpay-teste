@@ -1,19 +1,22 @@
 version: '3.9'
 
 services:
-  src:
-    container_name: src
-    image: apptestefrogpay
-    build: .
+  api:
+    container_name: frogpay-api
+    image: frogpay-api-image
+    build:
+      dockerfile: Dockerfile
+      context: .
     ports:
-      - "8080:80"
+      - 4652:8080
     environment:
       ConnectionStrings__DefaultConnection: "Host=db;Database=TesteFrogPay;Username=postgres;Password=mysecretpassword;"
+      ASPNETCORE_ENVIRONMENT: Development
     depends_on:
       - db
 
   db:
-    container_name: db
+    container_name: frogpay-db
     image: postgres:12
     ports:
       - "5432:5432"

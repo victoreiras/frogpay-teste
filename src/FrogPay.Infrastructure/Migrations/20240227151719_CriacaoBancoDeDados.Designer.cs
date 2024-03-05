@@ -12,8 +12,8 @@ using src.FrogPay.Infrastructure.Data;
 namespace src.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240222195326_ConfiguracaoPessoaDadosBancarios")]
-    partial class ConfiguracaoPessoaDadosBancarios
+    [Migration("20240227151719_CriacaoBancoDeDados")]
+    partial class CriacaoBancoDeDados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -204,6 +204,34 @@ namespace src.Migrations
                         .IsUnique();
 
                     b.ToTable("Pessoas");
+                });
+
+            modelBuilder.Entity("src.FrogPay.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("SenhaHash")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("SenhaSalt")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<DateTime>("TokenDataCriacao")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("src.FrogPay.Domain.Entities.DadosBancarios", b =>

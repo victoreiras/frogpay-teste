@@ -1,8 +1,7 @@
 **Instruções de como rodar o projeto**
 - Baixar o código pela url: https://github.com/victoreiras/frogpay-teste/tree/master
 - Executar o Docker
-- Rodar o comando: docker compose up -d db
-- Rodar o comando: docker compose up -d src
+- Rodar o comando: docker compose --project-name frogpay up -d
 
 **O que foi feito**
 - CRUD para pessoa, dados bancários, endereço e loja.

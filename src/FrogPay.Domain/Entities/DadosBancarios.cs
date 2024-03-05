@@ -9,11 +9,19 @@ public class DadosBancarios
         DigitoConta = digitoConta;
     }
 
-    public Guid Id { get; set; }
-    public string CodigoBanco { get; set; }
-    public string Agencia { get; set; }
-    public string Conta { get; set; }
-    public string DigitoConta { get; set; }
-    public Guid IdPessoa { get; set; }
-    public Pessoa Pessoa { get; set; }
+    public Guid Id { get; private set; }
+    public string CodigoBanco { get; private set; }
+    public string Agencia { get; private set; }
+    public string Conta { get; private set; }
+    public string DigitoConta { get; private set; }
+    public Guid IdPessoa { get; private set; }
+    public Pessoa Pessoa { get; private set; }
+
+    public void Atualizar(DadosBancarios dadosBancarios)
+    {
+        CodigoBanco = dadosBancarios.CodigoBanco;
+        Agencia = dadosBancarios.Agencia;
+        Conta = dadosBancarios.Conta;
+        DigitoConta = dadosBancarios.DigitoConta;
+    }
 }

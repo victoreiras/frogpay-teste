@@ -11,13 +11,21 @@ public class Pessoa
         DataCriacao = DateTime.Now;
     }
 
-    public Guid Id { get; set; }
-    public string Nome { get; set; }
-    public string Cpf { get; set; }
-    public DateTime DataNascimento { get; set; }
-    public bool Ativo { get; set; }
-    public DateTime DataCriacao { get; set; }
-    public Endereco Endereco { get; set; }
-    public Loja Loja { get; set; }
-    public DadosBancarios DadosBancarios { get; set; }
+    public Guid Id { get; private set; }
+    public string Nome { get; private set; }
+    public string Cpf { get; private set; }
+    public DateTime DataNascimento { get; private set; }
+    public bool Ativo { get; private set; }
+    public DateTime DataCriacao { get; private set; }
+    public Endereco Endereco { get; private set; }
+    public Loja Loja { get; private set; }
+    public DadosBancarios DadosBancarios { get; private set; }
+
+    public void Atualizar(Pessoa pessoa)
+    {
+        Nome = pessoa.Nome;
+        Cpf = pessoa.Cpf;
+        DataNascimento = pessoa.DataNascimento;
+        Ativo = pessoa.Ativo;
+    }
 }

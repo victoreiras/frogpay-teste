@@ -50,14 +50,22 @@ public class PessoaService : IPessoaService
 
         try
         {
-            if (pessoaEdicaoDto is null)
+            var pessoa = _pessoaRepository.ObterPessoaPorId(pessoaEdicaoDto.Id);
+
+            if (pessoa is null)
             {
-                serviceResponse.Mensagem = "Pessoa não pode ser nula.";
+                serviceResponse.Mensagem = "Pessoa não encontrada.";
                 serviceResponse.Sucesso = false;
                 return serviceResponse;
             }
 
-            var pessoa = _mapper.Map<Pessoa>(pessoaEdicaoDto);
+            var pessoaEdicao = _mapper.Map<Pessoa>(pessoaEdicaoDto);
+            
+            pessoa.DadosBancarios.Atualizar(pessoaEdicao.DadosBancarios);
+            pessoa.Loja.Atualizar(pessoaEdicao.Loja);
+            pessoa.Endereco.Atualizar(pessoaEdicao.Endereco);
+            pessoa.Atualizar(pessoaEdicao);
+
             _pessoaRepository.EditarPessoa(pessoa);
 
             serviceResponse.Dados = pessoaEdicaoDto;

@@ -14,13 +14,23 @@ public class Endereco
         Complemento = complemento;
     }
     
-    public Guid Id { get; set; }
-    public string UfEstado { get; set; }
-    public string Cidade { get; set; }
-    public string Bairro { get; set; }
-    public string Logradouro { get; set; }
-    public string Numero { get; set; }
-    public string Complemento { get; set; }
-    public Guid IdPessoa { get; set; }
-    public Pessoa Pessoa { get; set; }
+    public Guid Id { get; private set; }
+    public string UfEstado { get; private set; }
+    public string Cidade { get; private set; }
+    public string Bairro { get; private set; }
+    public string Logradouro { get; private set; }
+    public string Numero { get; private set; }
+    public string Complemento { get; private set; }
+    public Guid IdPessoa { get; private set; }
+    public Pessoa Pessoa { get; private set; }
+
+    public void Atualizar(Endereco endereco)
+    {
+        UfEstado = endereco.UfEstado;
+        Cidade = endereco.Cidade;
+        Bairro = endereco.Bairro;
+        Logradouro = endereco.Logradouro;
+        Numero = endereco.Numero;
+        Complemento = endereco.Complemento;
+    }
 }
